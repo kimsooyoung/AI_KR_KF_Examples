@@ -1,0 +1,94 @@
+frequency: 50
+
+two_d_mode: true
+diagnostics_agg: true
+
+#x     , y     , z,
+#roll  , pitch , yaw,
+#vx    , vy    , vz,
+#vroll , vpitch, vyaw,
+#ax    , ay    , az
+
+odom0: /noisy_odom
+odom0_config: [false, false, false,
+               false, false, false,
+               true, true, false,
+               false, false, true,
+               false, false, false]
+    
+#odom0_differential: true
+#odom0_relative: false
+odom0_differential: false
+odom0_relative: false
+
+imu0: /imu
+
+# NOTE: If you find that your robot has x drift,
+# the most likely candidate is the x'' (acceleration) fr$
+# Just set it to false! (It's the first entry on the las$
+imu0_config: [false, false, false,
+              false,  false,  true,
+              false, false, false,
+              false,  false,  true,
+              false,  false,  false]
+
+#imu0_differential: true
+imu0_relative: true
+imu0_differential: false
+
+odom_frame: odom
+
+# base_link_frame: base_link
+base_link_frame: base_footprint
+
+world_frame: odom
+# world_frame: map
+
+process_noise_covariance: [0.05, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0.05, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0.06, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0.03, 0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0.03, 0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0.06, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0.025, 0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0.025, 0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0.04, 0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0.01, 0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.01, 0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.02, 0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.01, 0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.01, 0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.015]
+
+initial_estimate_covariance: [1e-9, 0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    1e-9, 0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    1e-9, 0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    1e-9, 0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    1e-9, 0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    1e-9, 0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    1e-9, 0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    1e-9,  0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1e-9,  0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     1e-9,  0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1e-9, 0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1e-9, 0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1e-9]
+
+
+# [ADVANCED, UKF ONLY] The alpha and kappa variables control the spread of the sigma points. Unless you are familiar
+# with UKFs, it's probably a good idea to leave these alone.
+# Defaults to 0.001 if unspecified.
+alpha: 0.001
+# Defaults to 0 if unspecified.
+kappa: 0
+
+# [ADVANCED, UKF ONLY] The beta variable relates to the distribution of the state vector. Again, it's probably best to
+# leave this alone if you're uncertain. Defaults to 2 if unspecified.
+beta: 2
+
+
+# https://github.com/cra-ros-pkg/robot_localization/blob/kinetic-devel/params/ukf_template.yaml
+# Advanced params explanation
+# reference : https://github.com/cra-ros-pkg/robot_localization/blob/2d2976a737bbea00f638d9519783aaa9645a2c64/src/ukf.cpp#L57
