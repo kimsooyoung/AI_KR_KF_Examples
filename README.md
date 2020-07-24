@@ -47,7 +47,12 @@ Add those topic to `rqt_plot`
 /odometry/filtered/pose/pose/position/y
 ```
 
+## Todo
+
+* Create Docker File...
+
 ## Reference
 
 * My Brain
-* Robot Localization
+* [Ubuntu18.04: KobukiをROS Melodicで動かす](https://demura.net/education/lecture/16609.html)
+* [Robot Localization](https://github.com/cra-ros-pkg/robot_localization)
