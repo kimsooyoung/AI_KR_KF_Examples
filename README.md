@@ -7,14 +7,11 @@ AI Robotics Korea Sensor Fusion Study
 
 # Setup
 
-* Mac OS
-* Windows
-* Linux
-
 > My Environment
 
 - Ubuntu 18.04
 - ROS Melodic
+- clone this repo and build by typing `catkin_make`
 
 ### Add noise to Kobuki's Odom
 
@@ -47,12 +44,7 @@ Add those topic to `rqt_plot`
 /odometry/filtered/pose/pose/position/y
 ```
 
-## Todo
-
-* Create Docker File...
-
 ## Reference
 
-* My Brain
 * [Ubuntu18.04: KobukiをROS Melodicで動かす](https://demura.net/education/lecture/16609.html)
 * [Robot Localization](https://github.com/cra-ros-pkg/robot_localization)
